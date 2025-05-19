@@ -1,6 +1,10 @@
 let particles = [];
 let functions = [];
 
+function preload() {
+  overlayImg = loadImage('overlay.png');
+}
+
 function setup() {
   createCanvas(879, 138);
   noStroke();
