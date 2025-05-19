@@ -1,8 +1,9 @@
 let particles = [];
 let functions = [];
+let overlayImg; // Image variable declared globally
 
 function preload() {
-  overlayImg = loadImage('overlay.png');
+  overlayImg = loadImage('overlay.png'); // Load your transparent PNG
 }
 
 function setup() {
@@ -12,7 +13,7 @@ function setup() {
   functions = [
     x => 40 * sin(x / 20),  // sine
     x => 40 * cos(x / 20),  // cosine
-    x => 20 * tan(x / 50)   // tangent (smaller amplitude, beware of spikes)
+    x => 20 * tan(x / 50)   // tangent
   ];
 
   for (let i = 0; i < 30; i++) {
@@ -21,7 +22,7 @@ function setup() {
 }
 
 function draw() {
-  fill(255, 40); // fade trails
+  fill(255, 40); // background fade for trails
   rect(0, 0, width, height);
 
   for (let p of particles) {
@@ -31,6 +32,9 @@ function draw() {
   }
 
   fadeEdges();
+
+  // Draw overlay image on top of everything
+  image(overlayImg, 0, 0, width, height);
 }
 
 class FunctionParticle {
@@ -39,14 +43,14 @@ class FunctionParticle {
     this.fn = functions[this.index];
     this.x = random(width);
     this.offset = random(-100, 100);
-    this.speed = random(0.2, 0.7); // slower speed
+    this.speed = random(0.2, 0.7); // slower for visibility
     this.r = random(1, 2);
     this.lifespan = 255;
 
-    // Randomly assign one of the two colors
+    // Randomly assign one of the two ultramarine colors
     this.color = random([color('#7491FF'), color('#375CE3')]);
 
-    this.noiseOffset = random(1000); // for consistent per-particle noise
+    this.noiseOffset = random(1000); // for individual noise movement
   }
 
   update() {
@@ -68,14 +72,13 @@ class FunctionParticle {
   show() {
     if (this.y < -5 || this.y > height + 5) return;
 
-    // Add subtle noise to y-position when drawing (not affecting logic)
+    // Add slight noise to each particle's y-position
     let yNoise = this.y + map(noise(this.noiseOffset + frameCount * 0.01), 0, 1, -2, 2);
 
     fill(this.color.levels[0], this.color.levels[1], this.color.levels[2], 200);
     ellipse(this.x, yNoise, this.r * 2);
   }
 }
-
 
 function fadeEdges() {
   let edgeSize = 20;
