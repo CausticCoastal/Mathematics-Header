@@ -1,24 +1,32 @@
 html, body {
   margin: 0;
   padding: 0;
+  height: 100%; /* ensure full height for body */
 }
+
 canvas {
   display: block;
 }
+
 #sketch-wrapper {
   width: 100%;
   max-width: 879px;
   aspect-ratio: 879 / 138;
-  margin: 0 auto; /* ⬅️ Centers the wrapper */
+  margin: 0 auto; /* centers the wrapper */
   position: relative;
   overflow: hidden;
 }
+
 .iframe-container {
   max-width: 879px;
   aspect-ratio: 879 / 138;
-  margin: 0 auto;
+  margin: 0 auto; /* centers horizontally */
   width: 100%;
   overflow: hidden;
+  display: flex;           /* use flexbox to center */
+  justify-content: center; /* center iframe horizontally */
+  align-items: center;     /* center iframe vertically if container grows */
+  min-height: 138px;       /* prevent container from collapsing vertically */
 }
 
 .iframe-container iframe {
@@ -26,4 +34,7 @@ canvas {
   height: 100%;
   display: block;
   border: none;
+  max-width: 879px;
+  max-height: 138px;
+  object-fit: contain;  /* maintain aspect ratio, no squish */
 }
