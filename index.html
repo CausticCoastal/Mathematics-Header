@@ -2,19 +2,43 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Particles with Overlay</title>
   <style>
-    /* Put your CSS styles here - see below for full style */
+    html, body {
+      margin: 0; padding: 0;
+      height: 100%; width: 100%;
+      display: flex;
+      justify-content: center; /* center horizontally */
+      align-items: center;     /* center vertically */
+      background: #fff;
+      overflow: hidden;
+    }
+
+    #sketch-wrapper {
+      width: 100%;
+      max-width: 879px;
+      aspect-ratio: 879 / 138;
+      margin: 0 auto;
+      overflow: hidden;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    canvas {
+      width: 100% !important;
+      height: 100% !important;
+      display: block;
+      object-fit: contain;
+    }
   </style>
 </head>
 <body>
   <div id="sketch-wrapper"></div>
 
-  <!-- p5.js library -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
-
-  <!-- Your sketch file -->
   <script src="sketch.js"></script>
 </body>
 </html>
