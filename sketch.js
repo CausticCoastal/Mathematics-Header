@@ -1,15 +1,10 @@
 let particles = [];
 let functions = [];
-let overlayImg;
-
-function preload() {
-  overlayImg = loadImage('overlay.png'); // Make sure this file is in the same folder
-}
 
 function setup() {
   const wrapper = document.getElementById('sketch-wrapper');
-  const w = wrapper.clientWidth;
-  const h = wrapper.clientHeight;
+  let w = wrapper.clientWidth;
+  let h = wrapper.clientHeight;
 
   let canvas = createCanvas(w, h);
   canvas.parent('sketch-wrapper');
@@ -26,8 +21,15 @@ function setup() {
   }
 }
 
+function windowResized() {
+  const wrapper = document.getElementById('sketch-wrapper');
+  let w = wrapper.clientWidth;
+  let h = wrapper.clientHeight;
+  resizeCanvas(w, h);
+}
+
 function draw() {
-  fill(255, 40); // Semi-transparent background for trails
+  fill(255, 40); // fade trails
   rect(0, 0, width, height);
 
   for (let p of particles) {
@@ -37,26 +39,7 @@ function draw() {
   }
 
   fadeEdges();
-
-  // 🔧 Preserve image aspect ratio
-  imageMode(CENTER);
-
-  const imgAspect = overlayImg.width / overlayImg.height;
-  const canvasAspect = width / height;
-
-  let drawW, drawH;
-
-  if (canvasAspect > imgAspect) {
-    drawH = height;
-    drawW = imgAspect * drawH;
-  } else {
-    drawW = width;
-    drawH = drawW / imgAspect;
-  }
-
-  image(overlayImg, width / 2, height / 2, drawW, drawH);
 }
-
 
 class FunctionParticle {
   constructor(index) {
@@ -68,6 +51,7 @@ class FunctionParticle {
     this.r = random(1, 2);
 
     this.color = random([color('#7491FF'), color('#375CE3')]);
+
     this.noiseOffset = random(1000);
   }
 
@@ -91,6 +75,7 @@ class FunctionParticle {
     if (this.y < -5 || this.y > height + 5) return;
 
     let yNoise = this.y + map(noise(this.noiseOffset + frameCount * 0.01), 0, 1, -2, 2);
+
     fill(this.color.levels[0], this.color.levels[1], this.color.levels[2], 200);
     ellipse(this.x, yNoise, this.r * 2);
   }
@@ -101,9 +86,9 @@ function fadeEdges() {
   for (let i = 0; i < edgeSize; i++) {
     let alpha = map(i, 0, edgeSize, 0, 255);
     fill(255, alpha);
-    rect(0, i, width, 1); // top
-    rect(0, height - i, width, 1); // bottom
-    rect(i, 0, 1, height); // left
-    rect(width - i, 0, 1, height); // right
+    rect(0, i, width, 1);
+    rect(0, height - i, width, 1);
+    rect(i, 0, 1, height);
+    rect(width - i, 0, 1, height);
   }
 }
