@@ -1,40 +1,33 @@
 html, body {
   margin: 0;
   padding: 0;
-  height: 100%; /* ensure full height for body */
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center; /* center horizontally */
+  align-items: center;     /* center vertically */
+  background: #fff;        /* optional background color */
+  overflow: hidden;        /* prevent scrollbars */
 }
 
-canvas {
-  display: block;
-}
-
-#sketch-wrapper {
+#sketch-wrapper, .iframe-container {
   width: 100%;
   max-width: 879px;
   aspect-ratio: 879 / 138;
-  margin: 0 auto; /* centers the wrapper */
-  position: relative;
+  margin: 0 auto;
   overflow: hidden;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.iframe-container {
-  max-width: 879px;
-  aspect-ratio: 879 / 138;
-  margin: 0 auto; /* centers horizontally */
-  width: 100%;
-  overflow: hidden;
-  display: flex;           /* use flexbox to center */
-  justify-content: center; /* center iframe horizontally */
-  align-items: center;     /* center iframe vertically if container grows */
-  min-height: 138px;       /* prevent container from collapsing vertically */
-}
-
-.iframe-container iframe {
+canvas, .iframe-container iframe {
   width: 100%;
   height: 100%;
-  display: block;
-  border: none;
   max-width: 879px;
   max-height: 138px;
-  object-fit: contain;  /* maintain aspect ratio, no squish */
+  display: block;
+  border: none;
+  object-fit: contain; /* maintain aspect ratio, no squish */
 }
