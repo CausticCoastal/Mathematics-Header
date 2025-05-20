@@ -1,51 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>Responsive Function Particles</title>
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
-      background: #ffffff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Particles with Overlay</title>
+    <style>
+      html, body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden; /* Prevent scrollbars */
+      }
 
-    #sketch-wrapper {
-      position: relative;
-      width: 90vw; /* Use up to 90% of screen width */
-      max-width: 879px;
-      aspect-ratio: 879 / 138;
-    }
+      #sketch-wrapper {
+        position: relative;
+        width: 100%;
+        max-width: 879px;
+        height: 138px;
+        margin: 0 auto;
+        display: block;
+      }
 
-    canvas, #overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      display: block;
-    }
+      canvas {
+        display: block;
+      }
+    </style>
+  </head>
 
-    #overlay {
-      z-index: 1;
-      pointer-events: none;
-    }
+  <body>
+    <div id="sketch-wrapper"></div>
 
-    canvas {
-      z-index: 0;
-    }
-  </style>
-  <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
-  <script src="sketch.js" defer></script>
-</head>
-<body>
-  <div id="sketch-wrapper">
-    <img id="overlay" src="overlay.png" alt="Overlay">
-  </div>
-</body>
+    <!-- p5.js library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+    
+    <!-- your sketch file -->
+    <script src="sketch.js"></script>
+  </body>
 </html>
