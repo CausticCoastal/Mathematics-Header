@@ -3,7 +3,7 @@ let functions = [];
 let overlayImg; // ⬅️ added
 
 function preload() {
-  overlayImg = loadImage('overlay.png'); // ⬅️ added
+  overlayImg = loadImage('overlay.png');
 }
 
 function setup() {
