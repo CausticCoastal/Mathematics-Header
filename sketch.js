@@ -3,7 +3,7 @@ let functions = [];
 let overlayImg;
 
 function preload() {
-  overlayImg = loadImage('overlay.png'); // Load your transparent PNG
+  overlayImg = loadImage('overlay.png'); // Make sure this file is in the same folder
 }
 
 function setup() {
@@ -27,7 +27,7 @@ function setup() {
 }
 
 function draw() {
-  fill(255, 40); // Fade to create trail effect
+  fill(255, 40);
   rect(0, 0, width, height);
 
   for (let p of particles) {
@@ -37,8 +37,7 @@ function draw() {
   }
 
   fadeEdges();
-
-  image(overlayImg, 0, 0, width, height); // Draw overlay last
+  image(overlayImg, 0, 0, width, height);
 }
 
 class FunctionParticle {
@@ -49,6 +48,7 @@ class FunctionParticle {
     this.offset = random(-100, 100);
     this.speed = random(0.2, 0.7);
     this.r = random(1, 2);
+
     this.color = random([color('#7491FF'), color('#375CE3')]);
     this.noiseOffset = random(1000);
   }
@@ -71,6 +71,7 @@ class FunctionParticle {
 
   show() {
     if (this.y < -5 || this.y > height + 5) return;
+
     let yNoise = this.y + map(noise(this.noiseOffset + frameCount * 0.01), 0, 1, -2, 2);
     fill(this.color.levels[0], this.color.levels[1], this.color.levels[2], 200);
     ellipse(this.x, yNoise, this.r * 2);
@@ -87,9 +88,4 @@ function fadeEdges() {
     rect(i, 0, 1, height); // left
     rect(width - i, 0, 1, height); // right
   }
-}
-
-function windowResized() {
-  const wrapper = document.getElementById('sketch-wrapper');
-  resizeCanvas(wrapper.clientWidth, wrapper.clientHeight);
 }
