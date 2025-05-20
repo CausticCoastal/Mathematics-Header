@@ -1,23 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Function Particles with Overlay</title>
-    <style>
-      body {
-        margin: 0;
-        padding: 0;
-        background: #ffffff;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-      canvas {
-        display: block;
-      }
-    </style>
-    <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
-    <script src="sketch.js" defer></script>
-  </head>
-  <body></body>
+<head>
+  <meta charset="UTF-8" />
+  <title>Function Particles with Overlay</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden; /* Remove scrollbars */
+      background: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    #sketch-holder {
+      position: relative;
+      width: 879px;
+      height: 138px;
+    }
+
+    canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: block;
+      z-index: 0;
+    }
+
+    #overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 879px;
+      height: 138px;
+      z-index: 1;
+      pointer-events: none; /* So the mouse still interacts with canvas */
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
+  <script src="sketch.js" defer></script>
+</head>
+<body>
+  <div id="sketch-holder">
+    <img id="overlay" src="overlay.png" alt="Overlay Image">
+  </div>
+</body>
 </html>
