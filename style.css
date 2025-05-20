@@ -5,3 +5,11 @@ html, body {
 canvas {
   display: block;
 }
+#sketch-wrapper {
+  width: 100%;
+  max-width: 879px;
+  height: auto;
+  aspect-ratio: 879 / 138;
+  position: relative;
+  overflow: hidden;
+}
