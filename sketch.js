@@ -13,8 +13,18 @@ function setup() {
 
   let canvas = createCanvas(w, h);
   canvas.parent('sketch-wrapper');
-
   noStroke();
+
+  functions = [
+    x => 0.25 * h * sin(x / 20),
+    x => 0.25 * h * cos(x / 20),
+    x => 0.2 * h * tan(x / 50)
+  ];
+
+  for (let i = 0; i < 30; i++) {
+    particles.push(new FunctionParticle(i));
+  }
+}
 
   ...
 }
