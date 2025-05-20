@@ -7,8 +7,11 @@ function preload() {
 }
 
 function setup() {
-  createCanvas(879, 138);
+  let canvas = createCanvas(879, 138);
+  canvas.parent('sketch-holder'); // ← this binds the canvas to the div
   noStroke();
+  ...
+}
 
   functions = [
     x => 40 * sin(x / 20),  // sine
