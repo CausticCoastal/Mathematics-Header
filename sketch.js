@@ -7,9 +7,15 @@ function preload() {
 }
 
 function setup() {
-  let canvas = createCanvas(879, 138);
-  canvas.parent('sketch-holder'); // ← this binds the canvas to the div
+  const wrapper = document.getElementById('sketch-wrapper');
+  const w = wrapper.clientWidth;
+  const h = wrapper.clientHeight;
+
+  let canvas = createCanvas(w, h);
+  canvas.parent('sketch-wrapper');
+
   noStroke();
+
   ...
 }
 
