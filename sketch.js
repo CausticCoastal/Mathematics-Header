@@ -27,7 +27,7 @@ function setup() {
 }
 
 function draw() {
-  fill(255, 40);
+  fill(255, 40); // Semi-transparent background for trails
   rect(0, 0, width, height);
 
   for (let p of particles) {
@@ -37,8 +37,26 @@ function draw() {
   }
 
   fadeEdges();
-  image(overlayImg, 0, 0, width, height);
+
+  // 🔧 Preserve image aspect ratio
+  imageMode(CENTER);
+
+  const imgAspect = overlayImg.width / overlayImg.height;
+  const canvasAspect = width / height;
+
+  let drawW, drawH;
+
+  if (canvasAspect > imgAspect) {
+    drawH = height;
+    drawW = imgAspect * drawH;
+  } else {
+    drawW = width;
+    drawH = drawW / imgAspect;
+  }
+
+  image(overlayImg, width / 2, height / 2, drawW, drawH);
 }
+
 
 class FunctionParticle {
   constructor(index) {
